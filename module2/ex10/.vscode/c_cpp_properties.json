@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/home/mikhail/ros2_ws/install/turtlesim/include/**",
+                "/opt/ros/humble/include/**",
+                "/home/mikhail/ros2_ws/src/cpp_pubsub/include/**",
+                "/home/mikhail/ros2_ws/src/ex09/include/**",
+                "/home/mikhail/ros2_ws/src/names/include/**",
+                "/home/mikhail/ros2_ws/src/peshkov_mikhail/include/**",
+                "/home/mikhail/ros2_ws/src/ros_tutorials/turtlesim/include/**",
+                "/home/mikhail/ros2_ws/src/text_to_cmd_vel/include/**",
+                "/usr/include/**",
+                "/opt/ros/humble/include/geometry_msgs"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14"
+        }
+    ],
+    "version": 4
+}
