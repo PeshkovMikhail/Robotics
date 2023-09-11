@@ -3,13 +3,15 @@
 #include <memory>
 #include <string>
 #include <iostream>
-#include <ncurses.h>
+
 
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/twist.hpp"
+#include "std_msgs/msg/string.hpp"
 
 using namespace std::chrono_literals;
 using namespace geometry_msgs;
+using std::placeholders::_1;
 
 void fill_zero_vector3(msg::Vector3& vector) {
 	vector.set__x(0);
@@ -24,43 +26,33 @@ public:
 	: Node("turtle_controller")
 	{
 		publisher_ = this->create_publisher<msg::Twist>("/turtle1/cmd_vel", 10);
-		timer_ = this->create_wall_timer(
-				20ms, std::bind(&TurtleController::timer_callback, this));
+		subscription_ = this->create_subscription<std_msgs::msg::String>("/cmd_text", 10, std::bind(&TurtleController::topic_callback, this, _1));
 	}
 private:
-	void timer_callback() {
+	void topic_callback(const std_msgs::msg::String & msg) const {
 		auto message = msg::Twist();
 		auto linear = msg::Vector3();
 		fill_zero_vector3(linear);
 		auto angular = msg::Vector3();
 		fill_zero_vector3(angular);
 
-		int ch = getch();
-		switch(ch){
-			case KEY_UP:
-				std::cout << "FORWARD\r\n";
-				linear.set__x(1);
-				break;
-			case KEY_DOWN:
-				std::cout << "BACKWARD\r\n";
-				linear.set__x(-1);
-				break;
-			case KEY_LEFT:
-				std::cout << "TURN LEFT\r\n";
-				angular.set__z(1.5);
-				break;
-			case KEY_RIGHT:
-				std::cout << "TURN RIGHT\r\n";
-				angular.set__z(-1.5);
-				break;
-			case 27:
-				std::cout << "todo exit\r\n";
-				refresh();
-				endwin();
-				rclcpp::shutdown();
-				break;
-			default:
-				break;
+
+		if(strcmp("turn_right", msg.data.c_str())==0){
+			angular.set__z(-1.5);
+		}
+		else if(strcmp("turn_left", msg.data.c_str())==0) {
+			angular.set__z(1.5);
+		}
+		else if(strcmp("move_forward", msg.data.c_str())==0) {
+			std::cout << "forward\r\n";
+			linear.set__x(1);
+		}
+		else if(strcmp("move_backward", msg.data.c_str())==0){
+			linear.set__x(-1);
+			std::cout << "backward\r\n";
+		}
+		else {
+			std::cerr << "unexpected cmd: " << msg.data <<std::endl;
 		}
 
 		message.set__angular(angular);
@@ -68,16 +60,11 @@ private:
 		publisher_->publish(message);
 	}
 
-	rclcpp::TimerBase::SharedPtr timer_;
 	rclcpp::Publisher<msg::Twist>::SharedPtr publisher_;
+	rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 };
 
 int main(int argc, char * argv[]) {
-	initscr();
-	raw();
-	keypad(stdscr, TRUE);
-	noecho();
-
 	rclcpp::init(argc, argv);
 	rclcpp::spin(std::make_shared<TurtleController>());
 	rclcpp::shutdown();

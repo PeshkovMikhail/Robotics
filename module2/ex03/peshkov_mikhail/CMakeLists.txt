@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(peshkov_mikhail)
+project(text_to_cmd_vel)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -10,15 +10,6 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-
-add_executable(node src/node.cpp)
-target_include_directories(node PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-target_compile_features(node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-
-install(TARGETS node
-  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -33,7 +24,14 @@ if(BUILD_TESTING)
 endif()
 
 find_package(rclcpp REQUIRED)
-find_package(rclpy REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+
+add_executable(turtle_controller src/main.cpp)
+ament_target_dependencies(turtle_controller rclcpp geometry_msgs std_msgs)
+
+install(TARGETS 
+  turtle_controller
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
