@@ -76,11 +76,11 @@
       </link>
     </model>
 
-    <model name="sam_bot">
+    <model name="diff_drive">
       <self_collide>true</self_collide>
       <pose>0 0 0.35 0 0 0</pose>
       <include merge="true">
-        <uri>package://ros_gz_example_description/models/sam_bot</uri>
+        <uri>package://ros_gz_example_description/models/diff_drive</uri>
       </include>
 
       <plugin
@@ -100,8 +100,8 @@
       <plugin
         filename="gz-sim-odometry-publisher-system"
         name="gz::sim::systems::OdometryPublisher">
-        <odom_frame>sam_bot/odom</odom_frame>
-        <robot_base_frame>sam_bot</robot_base_frame>
+        <odom_frame>diff_drive/odom</odom_frame>
+        <robot_base_frame>diff_drive</robot_base_frame>
       </plugin>
     </model>
 

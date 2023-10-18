@@ -36,7 +36,7 @@ def generate_launch_description():
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
     # Load the SDF file from "description" package
-    sdf_file  =  os.path.join(pkg_project_description, 'models', 'sam_bot', 'model.sdf')
+    sdf_file  =  os.path.join(pkg_project_description, 'models', 'diff_drive', 'model.sdf')
     with open(sdf_file, 'r') as infp:
         robot_desc = infp.read()
 
@@ -47,7 +47,7 @@ def generate_launch_description():
         launch_arguments={'gz_args': PathJoinSubstitution([
             pkg_project_gazebo,
             'worlds',
-            'sam_bot.sdf'
+            'diff_drive.sdf'
         ])}.items(),
     )
 
@@ -66,11 +66,11 @@ def generate_launch_description():
         package='rqt_robot_steering',
         executable='rqt_robot_steering'
     )
-    # Visualize in du
+    # Visualize in RViz
     rviz = Node(
        package='rviz2',
        executable='rviz2',
-       arguments=['-d', os.path.join(pkg_project_bringup, 'config', 'sam_bot.rviz')],
+       arguments=['-d', os.path.join(pkg_project_bringup, 'config', 'diff_drive.rviz')],
        condition=IfCondition(LaunchConfiguration('rviz'))
     )
 
@@ -79,7 +79,7 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         parameters=[{
-            'config_file': os.path.join(pkg_project_bringup, 'config', 'sam_bot_bridge.yaml'),
+            'config_file': os.path.join(pkg_project_bringup, 'config', 'ros_gz_example_bridge.yaml'),
             'qos_overrides./tf_static.publisher.durability': 'transient_local',
         }],
         output='screen'

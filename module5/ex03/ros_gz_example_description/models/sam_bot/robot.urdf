@@ -4,7 +4,6 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="robot">
-  <!-- Robot Base -->
   <link name="base_link">
     <visual>
       <geometry>
@@ -26,6 +25,12 @@
     </inertial>
   </link>
   <!-- Robot Footprint -->
+  <link name="base_footprint"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.15000000000000002"/>
+  </joint>
   <link name="drivewhl_l_link">
     <visual>
       <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
@@ -82,16 +87,50 @@
     <origin rpy="0 0 0" xyz="-0.12 -0.18 -0.05"/>
     <axis xyz="0 1 0"/>
   </joint>
+  <!-- Caster Wheel -->
+  <joint name="caster_wheel_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="caster_wheel"/>
+        <origin xyz="0.14 0.0 0.08"/>
+  </joint>
 
+  <gazebo reference="caster_wheel">
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+  </gazebo>
 
+  <link name="caster_wheel">
+    <visual>
+        <geometry>
+            <sphere radius="0.08"/>
+        </geometry>
+    </visual>
+    <collision>
+        <geometry>
+            <sphere radius="0.08"/>
+        </geometry>
+    </collision>
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="0.01" />
+      <inertia ixx="0.0000004" ixy="0.0" ixz="0.0"
+               iyy="0.0000004" iyz="0.0"
+               izz="0.0000004" />
+    </inertial>
+  </link>
+
+ <gazebo>
   <plugin
-        filename="libgz-sim-diff-drive-system.so"
+        filename="gz-sim-diff-drive-system"
         name="gz::sim::systems::DiffDrive">
         <left_joint>drivewhl_l_joint</left_joint>
         <right_joint>drivewhl_r_joint</right_joint>
         <wheel_separation>0.31</wheel_separation>
         <wheel_radius>0.1</wheel_radius>
-        <topic>cmd_vel</topic>
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_link</robot_base_frame>
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
         <odom_publish_frequency>1</odom_publish_frequency>
         <max_linear_acceleration>1</max_linear_acceleration>
         <min_linear_acceleration>-1</min_linear_acceleration>
@@ -102,4 +141,5 @@
         <max_angular_velocity>1</max_angular_velocity>
         <min_angular_velocity>-1</min_angular_velocity>
       </plugin>
+</gazebo>
 </robot>
