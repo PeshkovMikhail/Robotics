@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/mikhailp/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages",
+        "/home/mikhailp/ros2_ws/install/turtle_action/local/lib/python3.10/dist-packages",
+        "/home/mikhailp/ros2_ws/install/teleop_twist_keyboard/lib/python3.10/site-packages",
+        "/home/mikhailp/ros2_ws/install/ros_ign_interfaces/local/lib/python3.10/dist-packages",
+        "/home/mikhailp/ros2_ws/install/ros_gz_interfaces/local/lib/python3.10/dist-packages",
+        "/home/mikhailp/ros2_ws/install/names/local/lib/python3.10/dist-packages",
+        "/home/mikhailp/ros2_ws/install/goal_action/local/lib/python3.10/dist-packages",
+        "/home/mikhailp/ros2_ws/install/ex09/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

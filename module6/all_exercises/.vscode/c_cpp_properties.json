@@ -1,0 +1,50 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/mikhailp/ros2_ws/install/turtlesim/include/**",
+        "/home/mikhailp/ros2_ws/install/turtle_action/include/**",
+        "/home/mikhailp/ros2_ws/install/sdformat_urdf/include/**",
+        "/home/mikhailp/ros2_ws/install/ros_ign_interfaces/include/**",
+        "/home/mikhailp/ros2_ws/install/ros_gz_sim/include/**",
+        "/home/mikhailp/ros2_ws/install/ros_gz_bridge/include/**",
+        "/home/mikhailp/ros2_ws/install/ros_gz_interfaces/include/**",
+        "/home/mikhailp/ros2_ws/install/names/include/**",
+        "/home/mikhailp/ros2_ws/install/goal_action/include/**",
+        "/home/mikhailp/ros2_ws/install/ex09/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/mikhailp/ros2_ws/src/action_turtle_commands/include/**",
+        "/home/mikhailp/ros2_ws/src/cpp_pubsub/include/**",
+        "/home/mikhailp/ros2_ws/src/diff_bot/include/**",
+        "/home/mikhailp/ros2_ws/src/ex09/include/**",
+        "/home/mikhailp/ros2_ws/src/goal_action/include/**",
+        "/home/mikhailp/ros2_ws/src/move_to_goal/include/**",
+        "/home/mikhailp/ros2_ws/src/names/include/**",
+        "/home/mikhailp/ros2_ws/src/peshkov_mikhail/include/**",
+        "/home/mikhailp/ros2_ws/src/ros_gz/ros_gz_bridge/include/**",
+        "/home/mikhailp/ros2_ws/src/ros_gz/ros_gz_sim/include/**",
+        "/home/mikhailp/ros2_ws/src/ros_gz_project_template/ros_gz_example_gazebo/include/**",
+        "/home/mikhailp/ros2_ws/src/ros_tutorials/turtlesim/include/**",
+        "/home/mikhailp/ros2_ws/src/sam_bot_description/include/**",
+        "/home/mikhailp/ros2_ws/src/sdformat_urdf/sdformat_urdf/include/**",
+        "/home/mikhailp/ros2_ws/src/service_full_name/include/**",
+        "/home/mikhailp/ros2_ws/src/test/include/**",
+        "/home/mikhailp/ros2_ws/src/text_to_cmd_vel/include/**",
+        "/home/mikhailp/ros2_ws/src/turtle_action/include/**",
+        "/home/mikhailp/ros2_ws/src/turtle_time_traveller/include/**",
+        "/home/mikhailp/ros2_ws/src/turtles_with_carrot/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
